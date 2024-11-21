@@ -1,0 +1,14 @@
+# Ignorar archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar configuraciones locales
+.env
+.vscode/
+
+# Ignorar bases de datos locales (si se generan temporalmente)
+*.db
+
+# Ignorar imágenes o datos grandes (si no son necesarios para el proyecto)
+data/
