@@ -1,4 +1,3 @@
 requests
-pandas
-sqlalchemy
-psycopg2-binary  # Solo si usas PostgreSQL
+pillow
+matplotlib
