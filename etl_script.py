@@ -32,8 +32,14 @@ if response.status_code == 200:
     
     if object_ids:
         print(f"Se encontraron {len(object_ids)} objetos relacionados con '{query}'.")
-        # Crear una carpeta para almacenar las imágenes descargadas con el nombre del query
-        images_folder = f"downloaded_images_{query}"
+
+        # Crear la carpeta output si no existe
+        output_folder = "output"
+        if not os.path.exists(output_folder):
+            os.makedirs(output_folder)
+        
+        # Crear una subcarpeta para las imágenes descargadas
+        images_folder = os.path.join(output_folder, f"downloaded_images_{query}")
         if not os.path.exists(images_folder):
             os.makedirs(images_folder)
         
@@ -76,7 +82,7 @@ if response.status_code == 200:
                 print(f"Error al obtener el objeto con ID {object_id}: {object_response.status_code}")
         
         # Exportar la lista de objetos con sus URLs de imagen a un archivo JSON con el nombre del query
-        json_filename = f'objects_with_images_{query}.json'
+        json_filename = os.path.join(output_folder, f'objects_with_images_{query}.json')
         with open(json_filename, 'w') as json_file:
             json.dump(objects_with_images, json_file, indent=4)
         
@@ -105,7 +111,7 @@ if response.status_code == 200:
                 ax.axis('off')
             
             plt.tight_layout()
-            collage_path = f"collage_{query}.png"
+            collage_path = os.path.join(output_folder, f"collage_{query}.png")
             # Añadir un marco dorado al collage completo antes de guardarlo
             plt.savefig(collage_path)
             collage_img = Image.open(collage_path)
