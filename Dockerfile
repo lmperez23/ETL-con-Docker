@@ -12,7 +12,7 @@ WORKDIR /app
 
 # Copia los archivos de la carpeta local al contenedor
 COPY requirements.txt /app/
-COPY script.py /app/
+COPY etl_script.py /app/
 
 # Instala las dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
